@@ -1,0 +1,5 @@
+I sorting quadratici sono più veloci solo per vettori di ordine di grandezza 10^1
+Sono circa pari in velocità per 10^2
+Da 10^3 in poi quelli quadratici sono nettamente più lenti
+Il quicksort è il più veloce di tutti (perchè non deve allocare vettori extra come il mergesort)
+Il bubblesort è il più lento di tutti (perchè fa tanti swap)
