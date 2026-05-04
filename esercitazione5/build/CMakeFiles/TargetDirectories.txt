@@ -1,0 +1,6 @@
+/home/poli/pcs/esercitazione5/build/CMakeFiles/measure_sorts.dir
+/home/poli/pcs/esercitazione5/build/CMakeFiles/test_mergesort.dir
+/home/poli/pcs/esercitazione5/build/CMakeFiles/test_quicksort.dir
+/home/poli/pcs/esercitazione5/build/CMakeFiles/test.dir
+/home/poli/pcs/esercitazione5/build/CMakeFiles/edit_cache.dir
+/home/poli/pcs/esercitazione5/build/CMakeFiles/rebuild_cache.dir

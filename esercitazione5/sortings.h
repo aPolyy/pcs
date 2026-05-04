@@ -130,3 +130,13 @@ void quicksort(std::vector<T>& vec, int p, int r) {
     }
     return;
 }
+
+template<typename T>
+void custom_sort(std::vector<T>& vec) {
+    int sz = vec.size();
+    if (sz > 40) 
+        quicksort(vec, 0, sz - 1);
+    else
+        insertionsort(vec);
+    return;
+}

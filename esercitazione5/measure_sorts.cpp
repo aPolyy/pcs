@@ -63,6 +63,14 @@ int main(int argc, char* argv[]) {
     time = (tc.toc())/((double) N);
     std::cout << "Quicksort: " << time << "s\n";
 
+    // custom_sort
+    vvi_copy = vvi;
+    tc.tic();
+    for (int i = 0; i < N; i++)
+        custom_sort(vvi_copy[i]);
+    time = (tc.toc())/((double) N);
+    std::cout << "Custom_sort: " << time << "s\n";
+
     // std::sort
     vvi_copy = vvi;
     tc.tic();
