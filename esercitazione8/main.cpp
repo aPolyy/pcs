@@ -1,17 +1,16 @@
 #include <iostream>
 #include <set>
-#include <list>
 #include <optional>
 #include "graph.h"
 
 int main() {
     
     std::set<int> g1_starting_nodes = {1, 2, 3, 4, 5};
-    std::list<unidirected_edge<int>> g1_starting_edges;
+    std::set<unidirected_edge<int>> g1_starting_edges;
     int from[] = {1, 1, 4, 5};
     int to[]   = {2, 3, 1, 3};
     for (int i = 0; i < sizeof(from)/sizeof(int); i++) 
-        g1_starting_edges.push_back(unidirected_edge<int>(from[i], to[i]));
+        g1_starting_edges.insert(unidirected_edge<int>(from[i], to[i]));
 
     unidirected_graph<int> g1(g1_starting_nodes, g1_starting_edges); 
 
@@ -21,7 +20,7 @@ int main() {
     std::cout << "\n";
     
     std::cout << "Archi in g1: ";
-    for (unidirected_edge<int> e : g1.all_edges()) 
+    for (const auto& e : g1.all_edges()) 
         std::cout << e << " ";
     std::cout << "\n";
     
@@ -70,19 +69,31 @@ int main() {
     std::cout << "\n";
 
     std::cout << "Archi in g2: ";
-    for (unidirected_edge<int> e : g2.all_edges()) 
+    for (const auto& e : g2.all_edges()) 
         std::cout << e << " ";
     std::cout << "\n";
 
-    unidirected_graph<int> diff = g1 - g2; // NB. questo usa anche l'operatore di copia
+    unidirected_graph<int> diff = g1 - g2; 
     
     std::cout << "Archi nel grafo differenza (g1 - g2): ";
-    for (unidirected_edge<int> e : diff.all_edges()) 
+    for (const auto& e : diff.all_edges()) 
         std::cout << e << " ";
     std::cout << "\n";
 
     std::cout << "Vicini del nodo 1 dopo la differenza: ";
     for (int neighb : diff.neighbours(1)) 
+        std::cout << neighb << " ";
+    std::cout << "\n";
+
+    unidirected_graph<int> gcopy(diff);
+
+    std::cout << "Archi nel grafo copia: ";
+    for (const auto& e : gcopy.all_edges()) 
+        std::cout << e << " ";
+    std::cout << "\n";
+
+    std::cout << "Vicini del nodo 1 nel grafo copia: ";
+    for (int neighb : gcopy.neighbours(1)) 
         std::cout << neighb << " ";
     std::cout << "\n";
 
