@@ -4,20 +4,12 @@
 #include <Eigen/Dense>
 #include <Eigen/SVD>
 
-// codice preso dall'esempio dato a lezione
-double condA(const Eigen::MatrixXd& A)
-{
-  Eigen::JacobiSVD<Eigen::MatrixXd> svd(A);
-  Eigen::VectorXd singularValuesA = svd.singularValues();
-  return singularValuesA.maxCoeff() / singularValuesA.minCoeff();
-}
-
 // todo list
 // 1) capire se la tolleranza è assoluta o relativa
 // 2) dare in output anche le iterazioni fatte e la tolleranza raggiunta
 // 3) capire se va templatizzato o se questa cosa va messa in header o meno etc
 // 4) prendere in input iterazioni massime e tolleranza e impostarne di standard se non vengono date
-Eigen::VectorXd cg(const Eigen::MatrixXd& A, const Eigen::VectorXd& b, const Eigen::VectorXd& x0, const int maxit, const double tol) {
+Eigen::VectorXd cg(const Eigen::MatrixXd& A, const Eigen::VectorXd& b, const Eigen::VectorXd& x0, const int maxit, const double tol, int& it, double& rel_err) {
     std::vector<Eigen::VectorXd> x;
     std::vector<Eigen::VectorXd> r;
     std::vector<Eigen::VectorXd> p;
@@ -28,16 +20,17 @@ Eigen::VectorXd cg(const Eigen::MatrixXd& A, const Eigen::VectorXd& b, const Eig
     r.push_back(b - A * x0);
     p.push_back(r[0]);
 
-    for (int k = 0; k < maxit; k++) {
-        alpha[k] = (p[k].dot(r[k]))/(p[k].dot(A * r[k]));
-        x.push_back(x[k] + alpha[k] * p[k]);
-        r.push_back(b - A * x[k+1]);
-        beta.push_back( (p[k].dot(A * r[k+1])) / (p[k].dot(A * p[k])));
-        p.push_back(r[k+1] - beta[k] * p[k]);
+    for (it = 0; it < maxit; it++) {
+        alpha.push_back((p[it].dot(r[it]))/(p[it].dot(A * r[it])));
+        x.push_back(x[it] + alpha[it] * p[it]);
+        r.push_back(b - A * x[it+1]);
+        beta.push_back( (p[it].dot(A * r[it+1])) / (p[it].dot(A * p[it])));
+        p.push_back(r[it+1] - beta[it] * p[it]);
 
-        if (r[k+1].norm() < tol)
+        if (r[it+1].norm() < tol)
             break;
     }
 
+    rel_err = 0.0; // todo
     return x.back();
 }
