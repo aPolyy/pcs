@@ -3,7 +3,6 @@
 #include <Eigen/SVD>
 #include "cg.h"
 
-// codice preso dall'esempio dato a lezione
 double condA(const Eigen::MatrixXd& A) {
     Eigen::JacobiSVD<Eigen::MatrixXd> svd(A);
     Eigen::VectorXd singularValuesA = svd.singularValues();
