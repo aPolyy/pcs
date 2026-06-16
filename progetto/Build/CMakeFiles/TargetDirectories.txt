@@ -1,0 +1,4 @@
+/home/pcsdocker/Data/CorsoPCS/progetto/Build/CMakeFiles/main.dir
+/home/pcsdocker/Data/CorsoPCS/progetto/Build/CMakeFiles/time_test.dir
+/home/pcsdocker/Data/CorsoPCS/progetto/Build/CMakeFiles/edit_cache.dir
+/home/pcsdocker/Data/CorsoPCS/progetto/Build/CMakeFiles/rebuild_cache.dir

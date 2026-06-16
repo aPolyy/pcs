@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wshadow -Werror=vla -Wl,--dependency-file=CMakeFiles/test.dir/link.d CMakeFiles/test.dir/dfsCycles_timetest.cpp.o -o test
